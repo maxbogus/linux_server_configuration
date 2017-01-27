@@ -8,4 +8,5 @@
 	b. upgraded all local software.
 	c. installed apache2
 	d. installed postgresql
+	e. installed libapache2-mod-wsgi
 4. A list of any third-party resources you made use of to complete this project.
