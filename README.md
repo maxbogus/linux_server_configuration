@@ -10,5 +10,5 @@
 	d. installed postgresql
 	e. installed libapache2-mod-wsgi
 	f. installed git
-	g. usorted installs: python-setuptools, python-dev, build-essential, python-pip, Flask-SQLAlchemy, sqlite3, libsqlite3-dev
+	g. usorted installs: python-setuptools, python-dev, build-essential, python-pip, Flask-SQLAlchemy, sqlite3, libsqlite3-dev, httplib2
 4. A list of any third-party resources you made use of to complete this project.
