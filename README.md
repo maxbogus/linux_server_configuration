@@ -43,7 +43,30 @@
 		* Open SSHD config:
 			* <pre> $ sudo vim /etc/ssh/sshd_config
 			* Change PasswordAuthentication back from yes to no.
-	* installed apache2, postgresql, libapache2-mod-wsgi, git, python-setuptools, python-dev, build-essential, python-pip, Flask-SQLAlchemy, sqlite3, libsqlite3-dev, httplib2, google-api-python-client, Flask, itsdangerous, click, Werkzeug, Jinja2, MarkupSafe
+	* Setup ufw: 
+		* Turn UFW on with the default set of rules:
+			* <pre> $ sudo ufw enable
+		* Check the status of UFW:
+			* <pre> $ sudo ufw status verbose
+		* Allow incoming TCP packets on port 2200 (SSH):
+			* <pre> $ sudo ufw allow 2200/tcp
+		* Allow incoming TCP packets on port 80 (HTTP):
+			* <pre> $ sudo ufw allow 80/tcp
+		* Allow incoming UDP packets on port 123 (NTP):
+			* <pre> $ sudo ufw allow 123/udp
+	* Configure time zone:
+		* <pre> $ sudo dpkg-reconfigure tzdata
+		* Then chose 'None of the above', then UTC.
+	* Installed and configurated Apache:
+		* <pre> $ sudo apt-get install apache2
+	* Install mod_wsgi for serving Python apps from Apache and the helper package python-setuptools:
+		* <pre> $ sudo apt-get install python-setuptools libapache2-mod-wsgi
+	* Restart the Apache server for mod_wsgi to load:
+		* <pre> $ sudo service apache2 restart
+	* Create an empty Apache config file with the hostname:
+		* <pre> $ echo "ServerName HOSTNAME" | sudo tee /etc/apache2/conf-available/catalog.conf
+	* Enable the new config file:
+		* <pre> $ sudo a2enconf catalog
 * A list of any third-party resources you made use of to complete this project:
 	* www.stackoverflow.com
 	* http://askubuntu.com/questions/410244/a-command-to-list-all-users-and-how-to-add-delete-modify-users
