@@ -8,17 +8,30 @@
 		* Create new development environment.
 		* Download private keys and write down your public IP address.
 		* Move the private key file into the folder ~/.ssh:
-			* $ mv ~/Downloads/udacity_key.rsa ~/.ssh/
+			* <pre>$ mv ~/Downloads/udacity_key.rsa ~/.ssh/
 		* Set file rights (only owner can write and read.):
-			* $ chmod 600 ~/.ssh/udacity_key.rsa
+			* <pre>$ chmod 600 ~/.ssh/udacity_key.rsa
 		* SSH into the instance:
 			* <pre>$ ssh -i ~/.ssh/udacity_key.rsa root@PUPLIC-IP-ADDRESS
 	* created user grader
-		* $ adduser NEWUSER
+		* <pre>$ adduser NEWUSER
 	* Give new user the permission to sudo
 		* Open the sudo configuration:
-			* $ visudo
-	* upgraded all local software.
+			<pre>* $ visudo
+	* updated list of software and upgraded all local software.
+		* <pre> $ sudo apt-get update
+		* <pre> $ sudo sudo apt-get upgrade
+	* configurated ssh access:
+		* Open the config file:
+			* <pre> $ vim /etc/ssh/sshd_config
+		* And made following changes:
+			* Change to Port 2200.
+			* Change PermitRootLogin from without-password to no.
+			* Temporalily change PasswordAuthentication from no to yes.
+			* Append UseDNS no.
+			* Append AllowUsers NEWUSER.
+		* Restart SSH Service:
+			* <pre> $ /etc/init.d/ssh restart
 	* installed apache2, postgresql, libapache2-mod-wsgi, git, python-setuptools, python-dev, build-essential, python-pip, Flask-SQLAlchemy, sqlite3, libsqlite3-dev, httplib2, google-api-python-client, Flask, itsdangerous, click, Werkzeug, Jinja2, MarkupSafe
 * A list of any third-party resources you made use of to complete this project:
 	* www.stackoverflow.com
