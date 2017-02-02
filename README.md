@@ -32,6 +32,17 @@
 			* Append AllowUsers NEWUSER.
 		* Restart SSH Service:
 			* <pre> $ /etc/init.d/ssh restart
+	* Created SSH Keys:
+		* Generated a SSH key pair on the local machine:
+			* <pre> $ ssh-keygen
+		* Installed ssh-copy-id (in my case i had a mac) and copied public key to the server:
+			* <pre> $ brew install ssh-copy-id
+			* <pre> $ ssh-copy-id username@remote_host -p**_PORTNUMBER_**
+		* Login with the new user:
+			* <pre> $ ssh -v grader@PUBLIC-IP-ADDRESS -p2200
+		* Open SSHD config:
+			* <pre> $ sudo vim /etc/ssh/sshd_config
+			* Change PasswordAuthentication back from yes to no.
 	* installed apache2, postgresql, libapache2-mod-wsgi, git, python-setuptools, python-dev, build-essential, python-pip, Flask-SQLAlchemy, sqlite3, libsqlite3-dev, httplib2, google-api-python-client, Flask, itsdangerous, click, Werkzeug, Jinja2, MarkupSafe
 * A list of any third-party resources you made use of to complete this project:
 	* www.stackoverflow.com
