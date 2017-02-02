@@ -140,8 +140,78 @@
 
 		  from catalog import app as application
 		  application.secret_key = 'Add your secret key'
-	* Restart Apache:
+	* Restarted Apache:
 		* <pre> $ sudo service apache2 restart
+	* Cloned project 3 solution repository on GitHub:
+		* <pre> $ git clone git@github.com:maxbogus/fullstack-nanodegree-vm.git
+	* Moved all content to /var/www/catalog/catalog/-directory and delete the leftover empty directory.
+	* Made the GitHub repository inaccessible:
+	* Created and opened .htaccess file:
+		* <pre> $ cd /var/www/catalog/
+		* <pre> $ sudo vim .htaccess
+	* Pasted in the following:
+		RedirectMatch 404 /\.git
+	* Activated virtual environment:
+		* <pre> $ source venv/bin/activate
+	* Installed httplib2 module in venv:
+		* <pre> $ pip install httplib2
+	* Installed requests module in venv:
+		* <pre> $ pip install requests
+	* Installed flask.ext.seasurf (only seems to work when installed globally):
+		* <pre> $ *sudo pip install flask-seasurf
+	* Installed oauth2client.client:
+		* <pre> $ sudo pip install --upgrade oauth2client
+	* Installed SQLAlchemy:
+		* <pre> $ sudo pip install sqlalchemy
+	* Installed the Python PostgreSQL adapter psycopg:
+		* <pre> $ sudo apt-get install python-psycopg2
+	* Installed PostgreSQL:
+		* <pre> $ sudo apt-get install postgresql postgresql-contrib
+	* Checked that no remote connections are allowed (default):
+		* <pre> $ sudo vim /etc/postgresql/9.3/main/pg_hba.conf
+	* Opened the database setup file:
+		* <pre> $ sudo vim database_setup.py
+	* Changed the line starting with "engine" to (fill in a password):
+		python engine = create_engine('postgresql://catalog:PW-FOR-DB@localhost/catalog')
+	* Changed the same line in application.py respectively
+	* Renamed application.py:
+		* <pre> $ mv application.py __init__.py
+	* Created needed linux user for psql:
+		* <pre> $ sudo adduser catalog (choose a password)
+	* Changed to default user postgres:
+		* <pre> $ sudo su - postgres
+	* Connected to the system:
+		* <pre> $ psql
+	* Created user with LOGIN role and set a password:
+		# CREATE USER catalog WITH PASSWORD 'PW-FOR-DB';
+	* Allowed the user to create database tables:
+		# ALTER USER catalog CREATEDB;
+	* Created database:
+		# CREATE DATABASE catalog WITH OWNER catalog;
+	* Connected to the database catalog 
+		# \c catalog
+	* Revoked all rights:
+		# REVOKE ALL ON SCHEMA public FROM public;
+	* Granted only access to the catalog role:
+		# GRANT ALL ON SCHEMA public TO catalog;
+	* Exited out of PostgreSQl and the postgres user:
+		# \q, then $ exit
+	* Created postgreSQL database schema:
+		* <pre> $ python database_setup.py
+	* Restarted Apache:
+		* <pre> $ sudo service apache2 restart
+	* Opened http://www.hcidata.info/host2ip.cgi and receive the Host name for your public IP-address
+	* Opened the Apache configuration files for the web app: 
+		* <pre> $ sudo vim /etc/apache2/sites-available/catalog.conf
+	* Pasted in the following line below ServerAdmin:
+		ServerAlias http://ec2-52-33-105-217.us-west-2.compute.amazonaws.com/
+	* Enabled the virtual host:
+		* <pre> $ sudo a2ensite catalog
+	* Went to the project on the Developer Console: https://console.developers.google.com/project
+	* Navigated to APIs & auth > Credentials > Edit Settings
+	* Added your host name and public IP-address to your Authorized JavaScript origins and your host name + oauth2callback to Authorized redirect URIs
+	* Went on the Facebook Developers Site to My Apps https://developers.facebook.com/apps/
+	* Setupped my application
 * A list of any third-party resources you made use of to complete this project:
 	* www.stackoverflow.com
 	* http://askubuntu.com/questions/410244/a-command-to-list-all-users-and-how-to-add-delete-modify-users
